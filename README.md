@@ -22,36 +22,6 @@ implementation("com.github.kittinunf.fuel:fuel:3.0.0-alpha1")
 
 use the `any http method` [suspend](https://kotlinlang.org/docs/reference/coroutines/basics.html) function:
 
-```kotlin
-runBlocking {
-    val string = Fuel.get("https://publicobject.com/helloworld.txt").body.string()
-    println(string)
-}
-
-runBlocking {
-    val string = "https://publicobject.com/helloworld.txt".httpGet().body.string()
-    println(string)
-}
-
-runBlocking {
-    val fuel = FuelBuilder().build()
-    val string = fuel.get(request = { url = "https://publicobject.com/helloworld.txt" }).body.string()
-}
-
-```
-
-## Custom Configuration
-JVM uses [OkHttpClient](https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/) configurations
-```kotlin
-val fuel = FuelBuilder().config(OKHttpClient()).build()
-val string = fuel.get(request = { url = "https://publicobject.com/helloworld.txt" }).body.string()
-```
-
-Apple uses [NSURLSessionConfiguration](https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration)
-```kotlin
-val fuel = FuelBuilder().config(NSURLSessionConfiguration.defaultSessionConfiguration).build()
-val string = fuel.get(request = { url = "https://publicobject.com/helloworld.txt" }).body.string()
-```
 
 Please note it will throw Exceptions. Make sure you catch it on the production apps.
 
